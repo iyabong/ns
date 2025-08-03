@@ -109,9 +109,11 @@
         <Button id="Button04" taborder="34" top="109" width="70" height="70" cssclass="btn_WF_search03" right="10"/>
         <Button id="Button05" taborder="35" text="삭제" top="39" width="55" height="25" cssclass="btn_WF_delete01" right="195" onclick="Button05_onclick"/>
         <Button id="Button06" taborder="36" text="추가" top="39" width="55" height="25" cssclass="btn_WF_add01" right="255" onclick="Button06_onclick"/>
-        <Button id="btnExcelReportFdt" taborder="37" text="엑셀레포트_FDT" left="18" top="36" width="148" height="32" onclick="btnExcelReportFdt_onclick"/>
-        <Button id="btnExcelReportFd" taborder="38" text="엑셀레포트_FD" left="178" top="36" width="148" height="32" onclick="btnExcelReportFd_onclick"/>
-        <FileDownload id="FileDownload00" taborder="39" text="FileDownload00" left="190" top="440" width="100" height="100"/>
+        <Button id="btnExcelReportFdt" taborder="37" text="엑셀레포트_FDT VOID" left="18" top="36" width="148" height="32" onclick="btnExcelReportFdt_onclick" background="red"/>
+        <Button id="btnExcelReportFd" taborder="38" text="엑셀레포트_FD" left="546" top="32" width="148" height="32" onclick="btnExcelReportFd_onclick"/>
+        <FileDownload id="FileDownload00" taborder="39" text="FileDownload00" left="190" top="440" width="100" height="100" onsuccess="FileDownload00_onsuccess"/>
+        <Button id="btnExcelReportFdtEntity" taborder="40" text="엑셀레포트_FDT ENTITY" left="176" top="36" width="148" height="32" background="red" onclick="btnExcelReportFdtEntity_onclick"/>
+        <Button id="btnMultipart" taborder="41" text="엑셀레포트_FDT ENTITY" left="354" top="39" width="148" height="32" background="yellow" onclick="fn_guaranteedError"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -155,7 +157,63 @@
           <Row/>
         </Rows>
       </Dataset>
-      <FileDownTransfer id="FileDownTransfer00"/>
+      <FileDownTransfer id="FileDownTransfer00" onerror="FileDownTransfer00_onerror" onsuccess="FileDownTransfer00_onsuccess"/>
+      <Dataset id="dsLeftMenu">
+        <ColumnInfo>
+          <Column id="MENU_CD" type="STRING" size="256"/>
+          <Column id="UP_MENU_CD" type="STRING" size="256"/>
+          <Column id="MENU_NM" type="STRING" size="256"/>
+          <Column id="MENU_LVL" type="STRING" size="256"/>
+          <Column id="PGM_PATH" type="STRING" size="256"/>
+          <Column id="PGM_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MENU_CD">0000</Col>
+            <Col id="UP_MENU_CD">0</Col>
+            <Col id="MENU_LVL">0</Col>
+            <Col id="MENU_NM">업무화면예시</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0001</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시1</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work01.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0002</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시2</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work02.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0003</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시3</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work03.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0004</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">엑셀보고서</Col>
+            <Col id="MENU_LVL">1</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">excelReport.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="fileId" type="STRING" size="256"/>
+          <Column id="fileName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[this.Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
@@ -182,20 +240,44 @@ this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	alert("엑셀");
 };
 
-this.btnExcelReport_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	
-};
-
 this.btnExcelReportFdt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
+	    var baseUrl = "http://localhost:8080/ns"; // application.properties의 webBaseUrl과 일치하게
+	trace('trace baseUrl:' + baseUrl); 
+	var downloadUrl = baseUrl + "/excel/excelDownloadFdt.do";
+	trace('trace downloadUrl:' + downloadUrl); 	
+
+    // 다운로드 실행
+    this.FileDownTransfer00.download(downloadUrl); 
+};
+
+this.btnExcelReportFdtEntity_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		    var baseUrl = "http://localhost:8080/ns"; // application.properties의 webBaseUrl과 일치하게
+	trace(' tracebaseUrl:' + baseUrl); 
+	var downloadUrl = baseUrl + "/excel/excelDownloadFdtEntity.do";
+	trace(' trace downloadUrl:' + downloadUrl); 	
+
+    // 다운로드 실행
+    this.FileDownTransfer00.download(downloadUrl); 
 };
 
 this.btnExcelReportFd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
+	var baseUrl = "http://localhost:8080/ns";
+	var downloadUrl = baseUrl + "/template/LAPTOP_REPORT_TEMPLATE.xlsx";
+   // this.FileDownload00.set_url(downloadUrl);
+    this.FileDownload00.download(downloadUrl);
 };
-]]></Script>
+
+this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferErrorEventInfo)
+{
+	trace(' trace onError');
+};
+
+this.FileDownTransfer00_onsuccess = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferEventInfo)
+{
+	trace(' trace onSucccess');	
+};]]></Script>
   </Form>
 </FDL>
