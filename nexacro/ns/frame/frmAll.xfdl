@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmAll" width="1280" height="720" titletext="New Form" onload="frmAll_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Div id="divTop" taborder="0" left="0" top="0" height="65" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="0" top="0" height="24" right="0" cssclass="sta_top_bg01"/>
+              <Static id="Static01" taborder="1" left="0" top="24" height="41" right="0" cssclass="sta_top_bg02"/>
+              <Static id="Static02" taborder="2" left="0" top="24" width="160" height="41" cssclass="sta_top_logo"/>
+              <Button id="Button00" taborder="3" text="상단메뉴01" left="190" top="24" width="120" height="40" cssclass="btn_top_menu" onclick="Button00_onclick"/>
+              <Button id="Button01" taborder="4" text="상단메뉴01" left="310" top="24" width="120" height="40" cssclass="btn_top_menu"/>
+              <Button id="Button02" taborder="5" text="상단메뉴01" left="430" top="24" width="120" height="40" cssclass="btn_top_menu"/>
+              <Button id="Button03" taborder="6" text="상단메뉴01" left="550" top="24" width="120" height="40" cssclass="btn_top_menu"/>
+              <Button id="Button04" taborder="7" text="상단메뉴01" left="670" top="24" width="120" height="40" cssclass="btn_top_menu"/>
+              <Static id="Static03" taborder="8" text="Hello! Hong Gil Dong" left="10" top="0" width="210" height="24" cssclass="sta_top_textWht"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divLeft" taborder="1" left="0" top="65" width="190" bottom="30">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="Main Title Menu" left="0" top="0" height="40" width="190" cssclass="sta_LF_title01"/>
+              <Grid id="grdLeft" taborder="1" left="0" top="40" width="190" binddataset="dsLeftMenu" autofittype="col" treeusecheckbox="false" cssclass="grd_LF_treeMenu" bottom="0" treeinitstatus="expand,all" oncellclick="divLeft_grdLeft_oncellclick" border="0px solid #c7c7c7,1px solid #c7c7c7">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="180"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="32"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:MENU_NM" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:MENU_LVL"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divBottom" taborder="2" left="0" height="30" bottom="0" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="0" top="0" height="30" right="0" cssclass="sta_BT_bg01"/>
+              <Static id="Static01" taborder="1" text="알람 &lt;b v='true'&gt;5건&lt;/b&gt;이 대기 중 입니다." left="20" top="0" width="270" height="30" usedecorate="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMdi" taborder="3" left="190" top="65" height="30" right="0" onsize="divMdi_onsize">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="5" left="0" top="0" height="30" right="0" cssclass="sta_mdi_bg01"/>
+              <Div id="divButtonList" taborder="3" left="29" top="0" height="30" right="90"/>
+              <Static id="Static01" taborder="1" left="0" top="0" width="30" height="30" cssclass="sta_mdi_home"/>
+              <Button id="btn_MdiPrev" taborder="2" top="-1" width="30" height="31" right="58" cssclass="btn_mdi_prev" onclick="divMdi_btn_MdiPrev_onclick"/>
+              <Button id="btn_MdiNext" taborder="3" top="-1" width="30" height="31" right="29" cssclass="btn_mdi_next" onclick="divMdi_btn_MdiNext_onclick"/>
+              <Button id="btnCloseAll" taborder="4" top="-1" width="30" height="31" right="0" cssclass="btn_mdi_close" onclick="divMdi_btnCloseAll_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divWork" taborder="4" left="200" top="95" right="0" bottom="30">
+          <Layouts>
+            <Layout>
+              <PopupMenu id="PopupMenu00" left="5" top="-31" width="120" height="101" innerdataset="@ds_Popup" captioncolumn="Column0" idcolumn="Column2" levelcolumn="Column1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsOpenList">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="caption" type="STRING" size="256"/>
+          <Column id="BTN_ID" type="STRING" size="256"/>
+          <Column id="BTN_EX_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLeftMenu">
+        <ColumnInfo>
+          <Column id="MENU_CD" type="STRING" size="256"/>
+          <Column id="UP_MENU_CD" type="STRING" size="256"/>
+          <Column id="MENU_NM" type="STRING" size="256"/>
+          <Column id="MENU_LVL" type="STRING" size="256"/>
+          <Column id="PGM_PATH" type="STRING" size="256"/>
+          <Column id="PGM_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MENU_CD">0000</Col>
+            <Col id="UP_MENU_CD">0</Col>
+            <Col id="MENU_LVL">0</Col>
+            <Col id="MENU_NM">업무화면예시</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0001</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시1</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work01.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0002</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시2</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work02.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0003</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">화면예시3</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">work03.xfdl</Col>
+            <Col id="MENU_LVL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CD">0004</Col>
+            <Col id="UP_MENU_CD">0000</Col>
+            <Col id="MENU_NM">엑셀보고서</Col>
+            <Col id="MENU_LVL">1</Col>
+            <Col id="PGM_PATH">Base</Col>
+            <Col id="PGM_ID">excelReport.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOpenMenu">
+        <ColumnInfo>
+          <Column id="MENU_CD" type="STRING" size="8"/>
+          <Column id="UP_MENU_CD" type="STRING" size="8"/>
+          <Column id="MENU_NM" type="STRING" size="50"/>
+          <Column id="MENU_LVL" type="BIGDECIMAL" size="22"/>
+          <Column id="PGM_PATH" type="STRING" size="200"/>
+          <Column id="PGM_ID" type="STRING" size="200"/>
+          <Column id="WINID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Popup">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">하위메뉴_1</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_2</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_2_1</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_2_2</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_2_3</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_3</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">하위메뉴_4</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[//MDI버튼 설정 정보
+this.numLeft 		= 0;
+this.numTop 		= 0;
+this.numWidth 		= 120;
+this.numHeight 		= 30;
+this.numExBtnLeft 	= 91;
+this.numExBtnTop 	= 1;
+this.numExBtnWidth 	= 28;
+this.numExBtnHeight	= 28;
+this.numWidCount 	= 0;
+this.numStIdx 		= 0;
+this.numEdIdx 		= 0;
+this.objFocusBtn 	= 0;
+
+this.frmAll_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//this.fn_setSize(this.getOffsetWidth(), this.getOffsetHeight());
+	this.numWidCount = nexacro.floor((this.divMdi.form.divButtonList.getOffsetWidth())/(this.numWidth+5));
+};
+
+this.divLeft_grdLeft_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sMenuId = this.dsLeftMenu.getColumn(e.row, "MENU_CD");
+	this.fn_openMenu(sMenuId);
+};
+
+this.fn_openHome = function()
+{
+	
+}
+
+this.fn_openMenu = function(sMenuId)
+{
+	var nFRow;
+	var sPGMPATH;
+	var sPGMID;
+	
+	var nFRowOpen;
+	var sWinId;
+	var sMenuNm;
+	var sMenuNavi;
+	
+	var objMenuDs = this.dsLeftMenu;
+	
+	nFRow 		= objMenuDs.findRow("MENU_CD", sMenuId);
+	sPGMPATH 	= objMenuDs.getColumn(nFRow, "PGM_PATH");
+	sPGMID 		= objMenuDs.getColumn(nFRow, "PGM_ID")
+	sMenuNm 	= objMenuDs.getColumn(nFRow, "MENU_NM");
+	
+	nFRowOpen = this.dsOpenMenu.findRow("MENU_CD", sMenuId);
+	sWinId = this.dsOpenMenu.getColumn(nFRowOpen, "WINID");
+	
+	if (nFRow==-1)
+	{
+		alert("Menu가 존재하지 않습니다.");
+		return;
+		
+	}else if(this.gfnIsNull(sPGMPATH)==true)
+	{
+		return;
+	}
+	
+	if(nFRowOpen>-1)
+	{
+		this.fn_ActiveTabPage(sWinId);
+		return;
+	}
+	
+	if(this.dsOpenMenu.rowcount > 12)
+	{
+		alert("메뉴는  8개이상 오픈할 수 없습니다.");
+		return;
+	}
+	
+	sWinId = sMenuId + "_" + this.dsOpenMenu.rowcount+ "_" + parseInt(Math.random() * 100);
+
+	var objNewWin = new Div();
+	objNewWin.init(sWinId, 0, 0, null, null, 0, 0);
+	
+	objNewWin.set_async(false);
+	
+	this.divWork.form.addChild(objNewWin.name, objNewWin);
+	
+	objNewWin.show();
+	
+	this.fn_AddTabPage(sWinId, sMenuNm);
+	
+	objNewWin.set_url(sPGMPATH+"::"+sPGMID);
+	
+	this.fn_AddOpenMenu(sWinId, sMenuId, sMenuNm);
+	
+	this.fn_ActiveTabPage(sWinId);
+	
+	//application.gvActiveWinId = sWinId;
+}
+
+/*****************************************************************************
+함 수 명 칭 : gfnActiveWorkFrame
+함 수 설 명 : 선택된 업무화면 Active상태로 전환 함수
+파 라 미 터 : pvWinId – 업무화면 ID
+리 턴 내 용 : true/false - Active 성공 여부
+*****************************************************************************/
+this.fn_ActiveWorkFrame = function(pvWinId) 
+{
+	var sWinId;
+	var rtn = false;
+	
+	for(i=0;i<this.dsOpenMenu.rowcount;i++)
+	{
+		sWinId = this.dsOpenMenu.getColumn(i, "WINID");
+		
+		if(sWinId==pvWinId)
+		{
+			this.divWork.form.components[sWinId].set_visible(true);
+			rtn = true;
+		}else
+		{
+			this.divWork.form.components[sWinId].set_visible(false);
+		}
+	}
+	
+	return rtn;
+}
+
+/*****************************************************************************
+함 수 명 칭 : gfnCloseWorkForm
+함 수 설 명 : 업무화면 From 닫기 함수
+파 라 미 터 : pvWinId – 업무화면 ID
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fn_CloseWorkForm = function(pvWinId)
+{
+ 	this.divWork.form.removeChild(pvWinId);
+ 	this.fn_DelOpenMenu(pvWinId);	
+	this.fn_DeleteTabpage(pvWinId);
+}
+
+/*****************************************************************************
+함 수 명 칭 : gfnAddOpenMenu
+함 수 설 명 : 열린화면리스트 저장
+파 라 미 터 : pvWinId – 업무화면 ID
+			   pvMenuCd – 메뉴코드
+			   pvMenuNm – 메뉴명
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fn_AddOpenMenu = function(pvWinId, pvMenuCd, pvMenuNm) 
+{
+	var nAddRow = this.dsOpenMenu.addRow();
+	this.dsOpenMenu.setColumn(nAddRow, "WINID", pvWinId);
+	this.dsOpenMenu.setColumn(nAddRow, "MENU_CD", pvMenuCd);
+	this.dsOpenMenu.setColumn(nAddRow, "MENU_NM", pvMenuNm);	
+}
+
+/*****************************************************************************
+함 수 명 칭 : gfnDelOpenMenu
+함 수 설 명 : 열린화면리스트 삭제
+파 라 미 터 : pvWinId – 업무화면 ID
+리 턴 내 용 : 없음
+*****************************************************************************/
+this.fn_DelOpenMenu = function(pvWinId) 
+{
+	var nRow = this.dsOpenMenu.findRow("WINID", pvWinId);
+	
+	this.dsOpenMenu.deleteRow(nRow);	
+}
+
+
+this.fn_AddTabPage = function(pvWinId, pvMenuNm)
+{
+	
+	var nRow = this.dsOpenList.addRow();
+	this.dsOpenList.setColumn(nRow, "code", 		pvWinId);
+	this.dsOpenList.setColumn(nRow, "caption", 	pvMenuNm);
+	this.dsOpenList.setColumn(nRow, "BTN_ID", 		"btn_Menu_" + pvWinId);
+	this.dsOpenList.setColumn(nRow, "BTN_EX_ID", 	"btn_Close_" + pvWinId);
+	
+	this.fn_MenuClear();
+	
+	var objBtn = new Button(); // 메뉴 버튼
+	objBtn.init("btn_Menu_" + pvWinId, this.numLeft, this.numTop, this.numWidth, this.numHeight, null, null);
+	
+	this.divMdi.form.divButtonList.form.addChild("btn_Menu_" + pvWinId, objBtn);
+	objBtn.set_cssclass("btn_mdi_menu");
+	objBtn.set_enable(true);
+	
+	//var strText = this.fnGetByteStr(pvMenuNm, 10);
+	
+	objBtn.set_text(pvMenuNm); // 10Byte 까지 출력
+	objBtn.set_visible(true);
+	objBtn.addEventHandler("onclick", this.div_main_btn_Menu_onclick, this);
+	objBtn.show();
+		
+	var objCloseBtn = new Button(); // 메뉴 닫기 버튼
+	objCloseBtn.init("btn_Close_" + pvWinId, this.numExBtnLeft, this.numExBtnTop, this.numExBtnWidth, this.numExBtnHeight, null, null);
+	this.divMdi.form.divButtonList.form.addChild("btn_Close_" + pvWinId, objCloseBtn);
+	
+	objCloseBtn.set_cssclass("btn_mdi_extra");
+	objCloseBtn.set_visible(true);
+	objCloseBtn.addEventHandler("onclick", this.div_main_btn_Close_onclick, this);
+	objCloseBtn.show();
+	
+	objCloseBtn.bringToFront();
+	
+	this.objFocusBtn = objBtn;
+	
+	this.fn_MenuMove("ADD");
+}
+
+this.div_main_btn_Menu_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var strVar = obj.name.replace("btn_Menu_", "");
+	this.fn_ActiveTabPage(strVar);
+}
+
+this.div_main_btn_Close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var strVar = obj.name.replace("btn_Close_", "");
+	this.fn_MenuClose(strVar);
+}
+
+this.fnGetByteStr = function(strValue, nLen)
+{
+	if(this.gfnIsNull(strValue)==true) return "";
+	var strReturn = "";
+	var strCh;
+	var nChLen = 0;
+	for(var i=0; i<strValue.length; i++) {
+		strCh = strValue.charAt(i);
+		this.edtText.set_value(strCh);
+		nChLen += this.edtText.getLength("ascii");
+		if(nChLen <= nLen) {
+			strReturn += strCh;
+		} else {
+			break;
+		} 
+	}
+	
+	this.edtText.set_value(strValue);
+	
+	if(this.edtText.getLength("ascii") > nLen) {
+		strReturn += "…";
+	}
+	return strReturn;
+}
+
+
+
+this.fn_MenuClose = function(pvWinId)
+{
+	this.fn_CloseWorkForm(pvWinId);
+	
+	if(this.dsOpenList.rowcount > 0) {
+		this.divMdi.form.btnCloseAll.set_enable(true);
+	} else {
+		this.divMdi.form.btnCloseAll.set_enable(false);
+	}	
+}
+
+this.fn_ActiveTabPage = function(pvWinId)
+{
+	this.fn_MenuClear();
+	var nRow = this.dsOpenList.findRow("code", pvWinId);
+	this.objFocusBtn = this.divMdi.form.divButtonList.form.components[this.dsOpenList.getColumn(nRow, "BTN_ID")];
+	
+	this.objFocusBtn.set_enable(false);
+		
+	if(nRow < this.numStIdx) {
+		this.numStIdx = nRow;
+		this.numEdIdx = this.numStIdx + this.numWidCount - 1;
+		if(this.numEdIdx == this.dsOpenList.getRowCount()) this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+	} else if(nRow > this.numEdIdx) {
+		this.numEdIdx = nRow;
+		this.numStIdx = this.numEdIdx - this.numWidCount + 1;
+		if(this.numStIdx < 0) { this.numStIdx = 0; }
+	}
+	
+	this.fn_MenuMove("");
+	
+	this.fn_ActiveWorkFrame(pvWinId);
+}
+
+this.fn_MenuClear = function(blnVisi)
+{
+	if(this.gfnIsNull(blnVisi)==true) blnVisi = true;
+	
+	var objComps = this.divMdi.form.divButtonList.form.components;
+	for(var i=0; i<objComps.length; i++) {
+		if(objComps[i] instanceof Button && objComps[i].name.indexOf("btn_Menu_")>=0) {
+			objComps[i].set_enable(true);
+			objComps[i].set_visible(blnVisi);
+		} else if(!blnVisi && objComps[i] instanceof Button && objComps[i].name.indexOf("btn_Close_")>=0) {
+			objComps[i].set_visible(blnVisi);
+		}
+	}
+}
+
+// NEXT
+// PREV
+// ADD
+// FIRST
+this.fn_MenuMove = function(pvType)
+{
+	if(pvType == "ADD") {
+		this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+		this.numStIdx = this.numEdIdx - this.numWidCount + 1;
+		if(this.numStIdx < 0) { this.numStIdx = 0; }
+	} else if(pvType == "NEXT") {
+		this.numEdIdx += 1;
+		this.numStIdx = this.numEdIdx - this.numWidCount + 1;
+		if(this.numStIdx < 0) { this.numStIdx = 0; }
+	} else if(pvType == "PREV") {
+		this.numStIdx -= 1;
+		this.numEdIdx = this.numStIdx + this.numWidCount - 1;
+		if(this.numEdIdx >= this.dsOpenList.getRowCount()) this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+	} else if(pvType == "FIRST") {
+		this.numStIdx = 0;
+		this.numEdIdx = this.numStIdx + this.numWidCount - 1;
+		if(this.numEdIdx >= this.dsOpenList.getRowCount()) this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+	} else if(pvType == "RESIZE") {
+		var numRow = -1;
+		if(this.dsOpenList.getRowCount() <= this.numWidCount) {
+			this.numStIdx = 0;
+			this.numEdIdx = this.numStIdx + this.numWidCount - 1;
+			if(this.numEdIdx >= this.dsOpenList.getRowCount()) this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+		} else {
+			numRow = this.dsOpenList.findRow("BTN_ID", this.objFocusBtn.name);
+			if(((numRow + 1) - this.numWidCount) >= 0) {
+				this.numEdIdx = numRow;
+				this.numStIdx = this.numEdIdx - this.numWidCount + 1;
+			} else {
+				this.numStIdx = 0;
+				this.numEdIdx = this.numStIdx + this.numWidCount - 1;
+				if(this.numEdIdx >= this.dsOpenList.getRowCount()) this.numEdIdx = this.dsOpenList.getRowCount() - 1;
+			}
+		}
+	}
+		
+	this.fn_MenuClear(false);
+	
+	var objBtn, objExBtn;
+	var nLeft = this.numLeft;
+	
+	for(var i=this.numStIdx; i<=this.numEdIdx; i++) {
+		objBtn 		= this.divMdi.form.divButtonList.form.components[this.dsOpenList.getColumn(i, "BTN_ID")];
+		objExBtn 	= this.divMdi.form.divButtonList.form.components[this.dsOpenList.getColumn(i, "BTN_EX_ID")];
+		objBtn.move(nLeft, this.numTop);
+		objBtn.set_visible(true);
+		objExBtn.move(nLeft+this.numExBtnLeft, this.numExBtnTop);
+		objExBtn.set_visible(true);
+		
+		nLeft += this.numWidth-1;
+	}
+	
+	if(this.numStIdx <= 0) { this.divMdi.form.btn_MdiPrev.set_enable(false); }
+	else                   { this.divMdi.form.btn_MdiPrev.set_enable(true); }
+	
+	if((this.numEdIdx + 1) == this.dsOpenList.getRowCount()) { this.divMdi.form.btn_MdiNext.set_enable(false); }
+	else                                                      { this.divMdi.form.btn_MdiNext.set_enable(true); }
+	
+	if(this.dsOpenList.getRowCount() > 0) {
+		this.divMdi.form.btnCloseAll.set_enable(true);
+	} else {
+		this.divMdi.form.btnCloseAll.set_enable(false);
+	}
+	
+	if(this.objFocusBtn != null) {
+		this.objFocusBtn.set_enable(false);
+	}
+	
+	this.divMdi.form.divButtonList.form.resetScroll();
+}
+
+this.fn_DeleteTabpage = function(pvWinId)
+{
+	var strBtnId, strBtnExId;
+	var objBtn, objBtnEx;
+	var nRow = this.dsOpenList.findRow("code", pvWinId);
+	
+	if(nRow < 0) {
+		return;
+	}
+	
+	strBtnId 		= this.dsOpenList.getColumn(nRow, "BTN_ID");
+	strBtnExId 		= this.dsOpenList.getColumn(nRow, "BTN_EX_ID");
+	objBtn 			= this.divMdi.form.divButtonList.form.components[strBtnId];
+	objBtnEx 		= this.divMdi.form.divButtonList.form.components[strBtnExId];
+	
+	this.removeChild(strBtnId);
+	objBtn.destroy();
+	objBtn = null;
+	
+	this.removeChild(strBtnExId);
+	objBtnEx.destroy();
+	objBtnEx = null;
+	
+	this.dsOpenList.deleteRow(nRow);
+	this.dsOpenList.applyChange();
+	this.numEdIdx = -1;
+	
+	this.fn_MenuMove("RESIZE");
+	
+	if(this.dsOpenMenu.getRowCount()==0)return;
+	
+	//다음 포커스 설정
+	var preMenuId;
+	for(var i=this.dsOpenMenu.getRowCount()-1; i>=0; i--) 
+	{
+		preMenuId = this.dsOpenMenu.getColumn(i, "WINID");
+		break;
+	}
+	this.fn_ActiveTabPage(preMenuId);
+}
+
+this.divMdi_onsize = function(obj:nexacro.Div,e:nexacro.SizeEventInfo)
+{
+	this.numWidCount = nexacro.floor(this.divMdi.form.divButtonList.getOffsetWidth()/(this.numWidth+1));
+	if(this.dsOpenList.rowcount == 0) return;
+	this.fn_MenuMove("RESIZE");
+};
+
+this.divMdi_btn_MdiPrev_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_MenuMove("PREV");
+}
+
+this.divMdi_btn_MdiNext_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_MenuMove("NEXT");
+}
+
+this.divMdi_btnCloseAll_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var i;
+	for(i=this.dsOpenMenu.rowcount-1;i>=0;i--)
+	{
+		preMenuId = this.dsOpenMenu.getColumn(i, "WINID");
+		this.fn_CloseWorkForm(preMenuId);
+	}
+}
+
+/*****************************************************************************
+함 수 명 칭 : gfnIsNull
+함 수 설 명 : 입력값 Null 체크 함수
+파 라 미 터 : pvVal – 입력값
+리 턴 내 용 : true/false 값이 Null일 경우 true
+*****************************************************************************/
+this.gfnIsNull = function (pvVal)
+{
+	if (new String(pvVal).valueOf() == "undefined") 
+	{
+		return true;
+	}
+	if (pvVal == null) 
+	{
+		return true;
+	}
+	if (("x" + pvVal == "xNaN") && (new String(pvVal.length).valueOf() == "undefined")) 
+	{
+		return true;
+	}
+	if (pvVal.length == 0) 
+	{
+		return true;
+	}
+
+	return false;
+}
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divWork.form.PopupMenu00.trackPopupByComponent(this.divTop.form.Button00,0,41);
+};
+]]></Script>
+  </Form>
+</FDL>
